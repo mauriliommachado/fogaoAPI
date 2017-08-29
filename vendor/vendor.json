@@ -9,12 +9,6 @@
 			"revisionTime": "2017-08-15T01:04:13Z"
 		},
 		{
-			"checksumSHA1": "Ex2t2Ef3KhhW/nFxvxwYFvQsvgQ=",
-			"path": "github.com/fogaoAPI",
-			"revision": "9d09de5de54efe014963be5fe387c69dac0884f6",
-			"revisionTime": "2017-08-29T05:49:19Z"
-		},
-		{
 			"checksumSHA1": "bePNavXD2S7HXRjuYyvOQyhCAYM=",
 			"path": "github.com/fogaoAPI/db",
 			"revision": "9d09de5de54efe014963be5fe387c69dac0884f6",
