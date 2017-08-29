@@ -42,10 +42,10 @@ func ResponseWithJSON(w http.ResponseWriter, json []byte, code int) {
 }
 
 func InsertUser(w http.ResponseWriter, req *http.Request) {
-	/*if !validAuthHeader(req) {
+	if !validAuthHeader(req) {
 		unauthorized(w)
 		return
-	}*/
+	}
 	var user db.User
 	decoder := json.NewDecoder(req.Body)
 	err := decoder.Decode(&user)
@@ -57,7 +57,7 @@ func InsertUser(w http.ResponseWriter, req *http.Request) {
 		badRequest(w, nil)
 		return
 	}
-	//user.Admin = false
+	user.Admin = false
 	user.Token = base64.StdEncoding.EncodeToString([]byte(user.Email + ":" + user.Pwd))
 	err = user.Persist(db.GetCollection())
 	if err != nil {
