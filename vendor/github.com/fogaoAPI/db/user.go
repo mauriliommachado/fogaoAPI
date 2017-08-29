@@ -3,7 +3,6 @@ package db
 import (
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
-	"github.com/gomodels/dbutil"
 	"log"
 )
 
@@ -30,7 +29,7 @@ func NewUser() (*User) {
 
 func (user *User) Persist(c *mgo.Collection) error {
 	var err error
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	user.Id = bson.NewObjectId()
 	err = c.Insert(user)
 	log.Println("Usuário", user.Name, "inserido")
@@ -42,7 +41,7 @@ func (user *User) Persist(c *mgo.Collection) error {
 
 func (user *User) Merge(c *mgo.Collection) error {
 	var err error
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err = c.Update(bson.M{"_id": user.Id}, &user)
 	log.Println("Usuário", user.Name, "atualizado")
 	if err != nil {
@@ -53,7 +52,7 @@ func (user *User) Merge(c *mgo.Collection) error {
 
 func (user *User) Remove(c *mgo.Collection) error {
 	var err error
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err = c.Remove(bson.M{"_id": user.Id})
 	log.Println("Usuário", user.Name, "removido")
 	if err != nil {
@@ -63,7 +62,7 @@ func (user *User) Remove(c *mgo.Collection) error {
 }
 
 func (user *User) FindById(c *mgo.Collection, id bson.ObjectId) error {
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err := c.Find(bson.M{"_id": id}).One(&user)
 	if err != nil {
 		return err
@@ -72,7 +71,7 @@ func (user *User) FindById(c *mgo.Collection, id bson.ObjectId) error {
 }
 
 func (user *User) FindLogin(c *mgo.Collection) bool {
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err := c.Find(bson.M{"email": user.Email,"pwd":user.Pwd}).One(&user)
 	if err != nil {
 		return false
@@ -81,7 +80,7 @@ func (user *User) FindLogin(c *mgo.Collection) bool {
 }
 
 func (user *User) FindHash(c *mgo.Collection) bool {
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err := c.Find(bson.M{"token": user.Token}).One(&user)
 	if err != nil {
 		log.Println(err,user.Token)
@@ -91,7 +90,7 @@ func (user *User) FindHash(c *mgo.Collection) bool {
 }
 
 func (users Users) FindAll(c *mgo.Collection) (Users, error) {
-	defer dbutil.CloseSession(c)
+	defer c.Database.Session.Close()
 	err := c.Find(bson.M{}).All(&users)
 	if err != nil {
 		return users, err

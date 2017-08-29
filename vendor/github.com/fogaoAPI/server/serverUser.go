@@ -6,7 +6,7 @@ import (
 	"log"
 	"fmt"
 	"encoding/json"
-	"../db"
+	"github.com/fogaoAPI/db"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/base64"
 	"github.com/rs/cors"
