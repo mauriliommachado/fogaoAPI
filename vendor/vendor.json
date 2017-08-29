@@ -9,6 +9,24 @@
 			"revisionTime": "2016-02-17T10:30:50Z"
 		},
 		{
+			"checksumSHA1": "Q+4nchXj6gkYe9yXV20q9S2fhjc=",
+			"path": "github.com/mauriliommachado/fogaoAPI",
+			"revision": "04017c87a75106d314fa7371b8db2a7b0f0203d3",
+			"revisionTime": "2017-08-29T19:07:03Z"
+		},
+		{
+			"checksumSHA1": "9z5Yhxql9mhA9ni13DaI46Ri35s=",
+			"path": "github.com/mauriliommachado/fogaoAPI/db",
+			"revision": "04017c87a75106d314fa7371b8db2a7b0f0203d3",
+			"revisionTime": "2017-08-29T19:07:03Z"
+		},
+		{
+			"checksumSHA1": "zGWNxHimpYsv922gI8ZI0ts/tzk=",
+			"path": "github.com/mauriliommachado/fogaoAPI/server",
+			"revision": "04017c87a75106d314fa7371b8db2a7b0f0203d3",
+			"revisionTime": "2017-08-29T19:07:03Z"
+		},
+		{
 			"checksumSHA1": "37eyHUVK+lWMU8Y9g93Pzn0Y3AY=",
 			"path": "github.com/mauriliommachado/gomodels/dbutil",
 			"revision": "27e836bef6a8f0f4e107e4bcda4683004203c923",
