@@ -3,7 +3,6 @@ package db
 import (
 	"gopkg.in/mgo.v2"
 	"fmt"
-	"os"
 )
 
 var fSession mgo.Session
@@ -12,7 +11,7 @@ var mongo_url = "mongodb://fogaoAdmin:fogaoAdmin@ds161913.mlab.com:61913/heroku_
 
 func Start() {
 
-	session, err := mgo.Dial(os.Getenv("MONGO_URL"))
+	session, err := mgo.Dial(mongo_url)
 	if err != nil {
 		panic(err)
 	}
