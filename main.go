@@ -16,9 +16,9 @@ func main() {
 	startDb()
 	m := pat.New()
 	handler := cors.AllowAll().Handler(m)
-	properties := server.ServerProperties{Address: "/api", Port: determineListenAddress()}
-	server.StartUsers(m)
-	http.Handle(properties.Address, handler)
+	properties := server.ServerProperties{Address: "/api/users", Port: determineListenAddress()}
+	server.StartUsers(properties,m)
+	http.Handle("/", handler)
 	fmt.Println("servidor iniciado no endereço localhost:" + properties.Port + properties.Address)
 	err := http.ListenAndServe(":"+properties.Port, nil)
 

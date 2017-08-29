@@ -127,8 +127,7 @@ func Validate(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func StartUsers( m *pat.PatternServeMux) {
-	properties := ServerProperties{Address: "/users"}
+func StartUsers(properties ServerProperties, m *pat.PatternServeMux) {
 	mapEndpointsUser(*m, properties)
 }
 func mapEndpointsUser(m pat.PatternServeMux, properties ServerProperties) {
