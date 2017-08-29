@@ -11,12 +11,8 @@ var fSession mgo.Session
 var mongo_url = "mongodb://fogaoAdmin:fogaoAdmin@ds161913.mlab.com:61913/heroku_j98w5qn4"
 
 func Start() {
-
-	uri := os.Getenv(mongo_url)
-	if uri == "" {
-		uri= "localhost"
-	}
-	session, err := mgo.Dial(uri)
+	
+	session, err := mgo.Dial(mongo_url)
 	if err != nil {
 		panic(err)
 	}
