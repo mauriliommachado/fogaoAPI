@@ -2,8 +2,7 @@ package main
 
 import (
 	"os"
-	"github.com/fogaoAPI/server"
-	"github.com/fogaoAPI/db"
+	"github.com/mauriliommachado/"
 )
 
 func main() {
