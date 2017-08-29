@@ -9,6 +9,24 @@
 			"revisionTime": "2016-02-17T10:30:50Z"
 		},
 		{
+			"checksumSHA1": "Ex2t2Ef3KhhW/nFxvxwYFvQsvgQ=",
+			"path": "github.com/fogaoAPI",
+			"revision": "9d09de5de54efe014963be5fe387c69dac0884f6",
+			"revisionTime": "2017-08-29T05:49:19Z"
+		},
+		{
+			"checksumSHA1": "bePNavXD2S7HXRjuYyvOQyhCAYM=",
+			"path": "github.com/fogaoAPI/db",
+			"revision": "9d09de5de54efe014963be5fe387c69dac0884f6",
+			"revisionTime": "2017-08-29T05:49:19Z"
+		},
+		{
+			"checksumSHA1": "/CiY/hHNo2Oa+NdjbIQh51lk6Gc=",
+			"path": "github.com/fogaoAPI/server",
+			"revision": "9d09de5de54efe014963be5fe387c69dac0884f6",
+			"revisionTime": "2017-08-29T05:49:19Z"
+		},
+		{
 			"checksumSHA1": "S9sjZ5Pth/CDxttsVWy6BTGL9K4=",
 			"path": "github.com/gomodels/dbutil",
 			"revision": "27e836bef6a8f0f4e107e4bcda4683004203c923",
