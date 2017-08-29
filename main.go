@@ -4,10 +4,12 @@ import (
 	"os"
 	"github.com/mauriliommachado/fogaoAPI/server"
 	"github.com/mauriliommachado/fogaoAPI/db"
+	"fmt"
 )
 
 
 func main() {
+	fmt.Printf(os.Getenv("MONGOLAB_URL"))
 	startDb()
 	server.StartUsers(server.ServerProperties{Address: "/api/users", Port: determineListenAddress()})
 }
