@@ -3,13 +3,10 @@ package server
 import (
 	"github.com/bmizerany/pat"
 	"net/http"
-	"log"
-	"fmt"
 	"encoding/json"
 	"github.com/mauriliommachado/fogaoAPI/db"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/base64"
-	"github.com/rs/cors"
 )
 
 func DeleteUser(w http.ResponseWriter, req *http.Request) {
@@ -130,19 +127,11 @@ func Validate(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func StartUsers(properties ServerProperties) {
-	m := pat.New()
-	handler := cors.AllowAll().Handler(m)
-	mapEndpoints(*m, properties)
-	http.Handle("/", handler)
-	fmt.Println("servidor iniciado no endereço localhost:" + properties.Port + properties.Address)
-	err := http.ListenAndServe(":"+properties.Port, nil)
-
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+func StartUsers( m *pat.PatternServeMux) {
+	properties := ServerProperties{Address: "/users"}
+	mapEndpointsUser(*m, properties)
 }
-func mapEndpoints(m pat.PatternServeMux, properties ServerProperties) {
+func mapEndpointsUser(m pat.PatternServeMux, properties ServerProperties) {
 	m.Post(properties.Address, http.HandlerFunc(InsertUser))
 	m.Put(properties.Address, http.HandlerFunc(UpdateUser))
 	m.Del(properties.Address+"/:id", http.HandlerFunc(DeleteUser))
