@@ -8,7 +8,7 @@ import (
 var fSession mgo.Session
 
 func Start() {
-	session, err := mgo.Dial("localhost")
+	session, err := mgo.Dial("mongodb://fogaoAdmin:fogaoAdmin@ds161913.mlab.com:61913/heroku_j98w5qn4")
 	if err != nil {
 		panic(err)
 	}
