@@ -1,9 +1,9 @@
-package main
+package db
 
 import (
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
-	"github.com/gomodels/dbutil"
+	"github.com/mauriliommachado/gomodels/dbutil"
 	"log"
 )
 

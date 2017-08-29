@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"github.com/bmizerany/pat"
@@ -6,7 +6,7 @@ import (
 	"log"
 	"fmt"
 	"encoding/json"
-	"../db"
+	"github.com/mauriliommachado/fogaoAPI/db"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/base64"
 	"github.com/rs/cors"
