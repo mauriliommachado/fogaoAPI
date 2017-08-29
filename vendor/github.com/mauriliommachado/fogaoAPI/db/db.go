@@ -19,6 +19,6 @@ func Start() {
 
 func GetCollection() (c *mgo.Collection) {
 	s := fSession.Copy()
-	c = s.DB("fogao").C("users")
+	c = s.DB("heroku_s9jcnfls").C("users")
 	return c
 }
