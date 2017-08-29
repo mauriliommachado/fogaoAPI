@@ -2,15 +2,16 @@ package main
 
 import (
 	"os"
+
 )
 
 func main() {
 	startDb()
-	server.StartUsers(server.ServerProperties{Address: "/api/users", Port: determineListenAddress()})
+	//server.StartUsers(server.ServerProperties{Address: "/api/users", Port: determineListenAddress()})
 }
 
 func startDb() {
-	db.Start()
+	//db.Start()
 }
 
 func determineListenAddress() (string) {
