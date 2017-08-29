@@ -10,6 +10,7 @@ var fSession mgo.Session
 
 func Start() {
 	fmt.Printf(os.Getenv("MONGODB_URI"))
+	
 	session, err := mgo.Dial(os.Getenv("MONGODB_URI"))
 	if err != nil {
 		panic(err)
