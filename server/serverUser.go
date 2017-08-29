@@ -12,11 +12,6 @@ import (
 	"github.com/rs/cors"
 )
 
-type ServerProperties struct {
-	Port    string
-	Address string
-}
-
 func DeleteUser(w http.ResponseWriter, req *http.Request) {
 	if !validAuthHeader(req) {
 		unauthorized(w)
@@ -32,13 +27,6 @@ func DeleteUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	ResponseWithJSON(w, nil, http.StatusNoContent)
-}
-
-
-func ResponseWithJSON(w http.ResponseWriter, json []byte, code int) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(code)
-	w.Write(json)
 }
 
 func InsertUser(w http.ResponseWriter, req *http.Request) {
@@ -116,19 +104,6 @@ func FindAllUsers(w http.ResponseWriter, req *http.Request) {
 	resp, _ := json.Marshal(users)
 	ResponseWithJSON(w, resp, http.StatusOK)
 }
-func validAuthHeader(req *http.Request) bool {
-	auth := req.Header.Get("Authorization")
-	if len(auth) <= 6 {
-		return false
-	}
-	var user db.User
-	user.Token = auth[6:]
-	if user.FindHash(db.GetCollection()){
-		return true
-	}else{
-		return false
-	}
-}
 
 func FindById(w http.ResponseWriter, req *http.Request) {
 	var user db.User
@@ -153,17 +128,6 @@ func Validate(w http.ResponseWriter, req *http.Request) {
 	} else {
 		w.WriteHeader(http.StatusNotFound)
 	}
-}
-
-func unauthorized(w http.ResponseWriter) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusUnauthorized)
-}
-
-func badRequest(w http.ResponseWriter, err error) {
-	log.Println(err)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusBadRequest)
 }
 
 func StartUsers(properties ServerProperties) {
