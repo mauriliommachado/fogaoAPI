@@ -3,14 +3,13 @@ package db
 import (
 	"gopkg.in/mgo.v2"
 	"fmt"
+	"os"
 )
 
 var fSession mgo.Session
 
-var mongo_url = "mongodb://fogaoAdmin:fogaoAdmin@ds161913.mlab.com:61913/heroku_j98w5qn4"
-
 func Start() {
-	session, err := mgo.Dial(mongo_url)
+	session, err := mgo.Dial(os.Getenv("MONGOLAB_URL"))
 	if err != nil {
 		panic(err)
 	}
