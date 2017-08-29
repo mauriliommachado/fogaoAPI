@@ -6,7 +6,6 @@ import (
 	"github.com/mauriliommachado/fogaoAPI/db"
 )
 
-var mongo_url = "mongodb://heroku_j98w5qn4:heroku_j98w5qn4@ds161913.mlab.com:61913/heroku_j98w5qn4"
 
 func main() {
 	startDb()

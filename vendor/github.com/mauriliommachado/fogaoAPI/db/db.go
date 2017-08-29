@@ -3,12 +3,20 @@ package db
 import (
 	"gopkg.in/mgo.v2"
 	"fmt"
+	"os"
 )
 
 var fSession mgo.Session
 
+var mongo_url = "mongodb://heroku_j98w5qn4:heroku_j98w5qn4@ds161913.mlab.com:61913/heroku_j98w5qn4"
+
 func Start() {
-	session, err := mgo.Dial("mongodb://fogaoAdmin:fogaoAdmin@ds161913.mlab.com:61913/heroku_j98w5qn4")
+
+	uri := os.Getenv(mongo_url)
+	if uri == "" {
+		uri= "localhost"
+	}
+	session, err := mgo.Dial(uri)
 	if err != nil {
 		panic(err)
 	}
