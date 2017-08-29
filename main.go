@@ -9,7 +9,7 @@ import (
 
 
 func main() {
-	fmt.Printf(os.Getenv("MONGOLAB_URL"))
+	fmt.Printf(os.Getenv("MONGODB_URI"))
 	startDb()
 	server.StartUsers(server.ServerProperties{Address: "/api/users", Port: determineListenAddress()})
 }

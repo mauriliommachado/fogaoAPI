@@ -9,8 +9,8 @@ import (
 var fSession mgo.Session
 
 func Start() {
-	fmt.Printf(os.Getenv("MONGOLAB_URL"))
-	session, err := mgo.Dial(os.Getenv("MONGOLAB_URL"))
+	fmt.Printf(os.Getenv("MONGODB_URI"))
+	session, err := mgo.Dial(os.Getenv("MONGODB_URI"))
 	if err != nil {
 		panic(err)
 	}
