@@ -17,7 +17,6 @@ type Event struct {
 	Date  time.Time `json:"date"`
 	Range int `json:"range"`
 	Recipes []bson.ObjectId `json:"recipes"`
-	User bson.ObjectId `json:"user"`
 }
 
 
@@ -27,6 +26,7 @@ func (event *Event) Persist(c *mgo.Collection) error {
 	var err error
 	defer dbutil.CloseSession(c)
 	event.Id = bson.NewObjectId()
+	event.CreatedIn = time.Now()
 	err = c.Insert(event)
 	log.Println("Evento ", event.Title, "inserido")
 	if err != nil {

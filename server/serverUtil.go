@@ -27,7 +27,7 @@ func badRequest(w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusBadRequest)
 }
 
-func validAuthHeader(req *http.Request) bool {
+func validAuthHeader(req *http.Request) (bool) {
 	auth := req.Header.Get("Authorization")
 	if len(auth) <= 6 {
 		return false
