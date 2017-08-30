@@ -12,6 +12,7 @@ type Ingredient struct {
 	Name       string `json:"name"`
 	Text        string `json:"text"`
 	Quantity    int `json: "quantity"`
+	Unit 	string `json: "unit"`
 	Observation string `json:obs`
 }
 
