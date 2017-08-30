@@ -15,7 +15,7 @@ type User struct {
 	Token string `json:"token"`
 	Phone string `json:"phone"`
 	Address string `json:"address"`
-	Admin bool
+	Admin bool `json:"admin"`
 }
 
 
