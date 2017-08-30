@@ -11,9 +11,9 @@ type Ingredient struct {
 	Id          bson.ObjectId `json:"id" bson:"_id,omitempty"`
 	Name       string `json:"name"`
 	Text        string `json:"text"`
-	Quantity    int `json: "quantity"`
-	Unit 	string `json: "unit"`
-	Observation string `json: "obs"`
+	Quantity    int `json:"quantity"`
+	Unit 	string `json:"unit"`
+	Observation string `json:"obs"`
 }
 
 type Ingredients []Ingredient
