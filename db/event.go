@@ -26,7 +26,8 @@ func (event *Event) Persist(c *mgo.Collection) error {
 	var err error
 	defer dbutil.CloseSession(c)
 	event.Id = bson.NewObjectId()
-	event.CreatedIn = time.Now()
+	location,_ :=  time.LoadLocation("UTC-3")
+	event.CreatedIn = time.Now().In(location)
 	err = c.Insert(event)
 	log.Println("Evento ", event.Title, "inserido")
 	if err != nil {
