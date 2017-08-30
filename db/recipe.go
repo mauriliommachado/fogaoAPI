@@ -13,7 +13,7 @@ type Recipe struct {
 	Text        string `json:"text"`
 	Ingredient []bson.ObjectId `json:"ingredient"`
 	Quantity    int `json:"quantity"`
-	Observation string `json:obs`
+	Observation string `json:"obs""`
 }
 
 type Recipes []Recipe
