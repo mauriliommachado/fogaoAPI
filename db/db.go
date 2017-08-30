@@ -9,7 +9,11 @@ import (
 var fSession mgo.Session
 
 func Start() {
-	session, err := mgo.Dial(os.Getenv("MONGODB_URI"))
+	uri := os.Getenv("MONGODB_URI")
+	if uri == "" {
+		uri= "localhost"
+	}
+	session, err := mgo.Dial(uri)
 	if err != nil {
 		panic(err)
 	}
