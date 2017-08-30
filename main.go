@@ -32,6 +32,9 @@ func initServers(handler http.Handler,properties server.ServerProperties, m *pat
 	properties.Address = "/api/recipes"
 	server.StartRecipes(properties, m)
 	fmt.Println("servidor iniciado no endereço localhost:" + properties.Port + properties.Address)
+	properties.Address = "/api/events"
+	server.StartEvents(properties, m)
+	fmt.Println("servidor iniciado no endereço localhost:" + properties.Port + properties.Address)
 	http.Handle("/", handler)
 }
 
