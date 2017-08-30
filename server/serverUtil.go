@@ -34,7 +34,7 @@ func validAuthHeader(req *http.Request) bool {
 	}
 	var user db.User
 	user.Token = auth[6:]
-	if user.FindHash(db.GetCollection()){
+	if user.FindHash(db.GetUsersCollection()){
 		return true
 	}else{
 		return false
