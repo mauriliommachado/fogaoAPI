@@ -6,6 +6,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"github.com/mauriliommachado/gomodels/dbutil"
 	"log"
+	"fmt"
 )
 
 type Event struct {
@@ -27,6 +28,7 @@ func (event *Event) Persist(c *mgo.Collection) error {
 	defer dbutil.CloseSession(c)
 	event.Id = bson.NewObjectId()
 	location, err := time.LoadLocation("America/Sao_Paulo")
+	fmt.Println(time.Now().In(location))
 	event.CreatedIn = time.Now().In(location)
 	err = c.Insert(event)
 	log.Println("Evento ", event.Title, "inserido")
