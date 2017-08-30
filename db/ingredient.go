@@ -13,7 +13,7 @@ type Ingredient struct {
 	Text        string `json:"text"`
 	Quantity    int `json: "quantity"`
 	Unit 	string `json: "unit"`
-	Observation string `json:obs`
+	Observation string `json: "obs"`
 }
 
 type Ingredients []Ingredient
