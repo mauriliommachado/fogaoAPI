@@ -16,8 +16,8 @@ func DeleteUser(w http.ResponseWriter, req *http.Request) {
 	}
 	var user db.User
 	id := req.URL.Query().Get(":id")
-	err := user.FindById(db.GetCollection(), bson.ObjectIdHex(id))
-	user.Remove(db.GetCollection())
+	err := user.FindById(db.GetUsersCollection(), bson.ObjectIdHex(id))
+	user.Remove(db.GetUsersCollection())
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
@@ -44,7 +44,7 @@ func InsertUser(w http.ResponseWriter, req *http.Request) {
 	}
 	user.Admin = false
 	user.Token = base64.StdEncoding.EncodeToString([]byte(user.Email + ":" + user.Pwd))
-	err = user.Persist(db.GetCollection())
+	err = user.Persist(db.GetUsersCollection())
 	if err != nil {
 		badRequest(w, err)
 		return
@@ -64,7 +64,7 @@ func UpdateUser(w http.ResponseWriter, req *http.Request) {
 
 	decoder := json.NewDecoder(req.Body)
 	err := decoder.Decode(&user)
-	userUp.FindById(db.GetCollection(), user.Id)
+	userUp.FindById(db.GetUsersCollection(), user.Id)
 	if len(userUp.Id.Hex()) == 0 {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
@@ -75,7 +75,7 @@ func UpdateUser(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	user.Token = base64.StdEncoding.EncodeToString([]byte(user.Email + ":" + user.Pwd))
-	err = user.Merge(db.GetCollection())
+	err = user.Merge(db.GetUsersCollection())
 	if err != nil {
 		badRequest(w, err)
 		return
@@ -90,7 +90,7 @@ func FindAllUsers(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var users db.Users
-	users, err := users.FindAll(db.GetCollection())
+	users, err := users.FindAll(db.GetUsersCollection())
 	if err != nil {
 		badRequest(w, err)
 		return
@@ -102,10 +102,10 @@ func FindAllUsers(w http.ResponseWriter, req *http.Request) {
 	ResponseWithJSON(w, resp, http.StatusOK)
 }
 
-func FindById(w http.ResponseWriter, req *http.Request) {
+func FindUserById(w http.ResponseWriter, req *http.Request) {
 	var user db.User
 	id := req.URL.Query().Get(":id")
-	err := user.FindById(db.GetCollection(), bson.ObjectIdHex(id))
+	err := user.FindById(db.GetUsersCollection(), bson.ObjectIdHex(id))
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
@@ -115,17 +115,6 @@ func FindById(w http.ResponseWriter, req *http.Request) {
 	ResponseWithJSON(w, resp, http.StatusOK)
 }
 
-func Validate(w http.ResponseWriter, req *http.Request) {
-	var user db.User
-	hash := req.URL.Query().Get(":hash")
-	user.Token = hash
-	if user.FindHash(db.GetCollection()) {
-		resp, _ := json.Marshal(user)
-		ResponseWithJSON(w, resp, http.StatusOK)
-	} else {
-		w.WriteHeader(http.StatusNotFound)
-	}
-}
 
 func StartUsers(properties ServerProperties, m *pat.PatternServeMux) {
 	mapEndpointsUser(*m, properties)
@@ -135,8 +124,7 @@ func mapEndpointsUser(m pat.PatternServeMux, properties ServerProperties) {
 	m.Put(properties.Address, http.HandlerFunc(UpdateUser))
 	m.Del(properties.Address+"/:id", http.HandlerFunc(DeleteUser))
 	m.Get(properties.Address, http.HandlerFunc(FindAllUsers))
-	m.Get(properties.Address+"/:id", http.HandlerFunc(FindById))
-	m.Get(properties.Address+"/validate/:hash", http.HandlerFunc(Validate))
+	m.Get(properties.Address+"/:id", http.HandlerFunc(FindUserById))
 }
 
 

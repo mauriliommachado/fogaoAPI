@@ -17,8 +17,27 @@ func Start() {
 	fmt.Println("Sessão do banco criada")
 }
 
-func GetCollection() (c *mgo.Collection) {
+func GetUsersCollection() (c *mgo.Collection) {
 	s := fSession.Copy()
 	c = s.DB("heroku_s9jcnfls").C("users")
 	return c
 }
+
+func GetIngrediantsCollection() (c *mgo.Collection) {
+	s := fSession.Copy()
+	c = s.DB("heroku_s9jcnfls").C("ingrediants")
+	return c
+}
+
+func GetRecipesCollection() (c *mgo.Collection) {
+	s := fSession.Copy()
+	c = s.DB("heroku_s9jcnfls").C("recipes")
+	return c
+}
+
+func GetEventsCollection() (c *mgo.Collection) {
+	s := fSession.Copy()
+	c = s.DB("heroku_s9jcnfls").C("events")
+	return c
+}
+
